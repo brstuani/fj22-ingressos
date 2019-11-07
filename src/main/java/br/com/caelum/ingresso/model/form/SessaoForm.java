@@ -32,13 +32,6 @@ public class SessaoForm {
 		return sessao;
 	}
 	
-	public SessaoForm(Integer salaId, LocalTime horario, Integer filmeId) {
-		super();
-		this.salaId = salaId;
-		this.horario = horario;
-		this.filmeId = filmeId;
-	}
-
 	public Integer getSalaId() {
 		return salaId;
 	}
