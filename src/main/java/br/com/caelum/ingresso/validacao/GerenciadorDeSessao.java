@@ -16,7 +16,6 @@ public class GerenciadorDeSessao {
 	}
 	
 	public boolean cabe(Sessao sessaoNova) {
-		System.out.println("metodo cabe");
 		if(terminaAmanha(sessaoNova)) {
 			return false;
 		}
@@ -27,7 +26,6 @@ public class GerenciadorDeSessao {
 	}
 	
 	private boolean terminaAmanha(Sessao sessao) {
-		System.out.println("metodo terminaAmanha");
 		LocalDateTime terminoSessaoNova = getTerminoSessaoComDiaDeHoje(sessao);
 		LocalDateTime ultimoSegundoDeHoje = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
 		
@@ -38,13 +36,10 @@ public class GerenciadorDeSessao {
 	}
 	
 	private boolean horarioIsConfitante(Sessao sessaoExistente, Sessao sessaoNova) {
-		System.out.println("metodo gconflito");
 		LocalDateTime inicioSessaoExistente = getInicioSessaoComDiaDeHoje(sessaoExistente);
-		LocalDateTime terminoSessaoExistente = getTerminoSessaoComDiaDeHoje(sessaoNova);
-		System.out.println("meio");
+		LocalDateTime terminoSessaoExistente = getTerminoSessaoComDiaDeHoje(sessaoExistente);
 		LocalDateTime inicioSessaoNova = getInicioSessaoComDiaDeHoje(sessaoNova);
 		LocalDateTime terminoSessaoNova = getTerminoSessaoComDiaDeHoje(sessaoNova);
-		System.out.println("preencheu todas variaveis ");
 		
 		boolean sessaoNovaTerminaAntesDaExistente = terminoSessaoNova.isBefore(inicioSessaoExistente);
 		boolean sessaoNovaComecaDepoisDaExistente = terminoSessaoExistente.isBefore(inicioSessaoNova);
@@ -57,14 +52,12 @@ public class GerenciadorDeSessao {
 	}
 	
 	private LocalDateTime getInicioSessaoComDiaDeHoje(Sessao sessao) {
-		System.out.println("metodo getInicio");
 		LocalDate hoje = LocalDate.now();
 		
 		return sessao.getHorario().atDate(hoje);
 	}
 	
 	private LocalDateTime getTerminoSessaoComDiaDeHoje(Sessao sessao) {
-		System.out.println("metodo getTermino");
 		LocalDateTime inicioSessaoNova = getInicioSessaoComDiaDeHoje(sessao);
 		
 		return inicioSessaoNova.plus(sessao.getFilme().getDuracao());
