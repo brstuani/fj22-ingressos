@@ -1,10 +1,13 @@
 package br.com.caelum.ingresso.controller;
 
 import br.com.caelum.ingresso.dao.FilmeDao;
+import br.com.caelum.ingresso.dao.LoginDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.DetalhesDoFilme;
 import br.com.caelum.ingresso.model.Filme;
+import br.com.caelum.ingresso.model.Permissao;
 import br.com.caelum.ingresso.model.Sessao;
+import br.com.caelum.ingresso.model.Usuario;
 import br.com.caelum.ingresso.rest.OmdbClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +31,7 @@ public class FilmeController {
 
     @Autowired
     private FilmeDao filmeDao;
-
-
+    
     @Autowired
     private SessaoDao sessaoDao;
     
@@ -71,7 +73,7 @@ public class FilmeController {
     public ModelAndView lista(){
 
         ModelAndView modelAndView = new ModelAndView("filme/lista");
-
+        
         modelAndView.addObject("filmes", filmeDao.findAll());
 
         return modelAndView;
@@ -89,7 +91,7 @@ public class FilmeController {
     public ModelAndView emCartaz() {
     	ModelAndView modelAndView = new ModelAndView("filme/em-cartaz");
     	modelAndView.addObject("filmes", filmeDao.findAll());
-    	
+
     	return modelAndView;
     }
     
